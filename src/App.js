@@ -1,25 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import SignIn from './components/signin'
+import SignUp from './components/signup'
+import { makeStyles } from '@material-ui/core/styles';
+import VideoInput from './subcomponents/VideoInput';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+
+const useStyles = makeStyles(theme => ({
+  photoAlbum: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
 function App() {
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+    <Switch>
+    <Route exact path="/" component={SignIn} />
+    <Route exact path="/login" component={SignIn} />
+    <Route exact path="/signup" component={SignUp} />
+    <Route exact path="/app" component={VideoInput} />
+    </Switch>
+    </Router>
   );
 }
 
